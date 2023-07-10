@@ -22,9 +22,9 @@ public class Util {
 
     private static SessionFactory sessionFactory;
 
-    public static SessionFactory getSessionFactory(){
-        if (sessionFactory == null){
-            try{
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
                 Configuration configuration = new Configuration();
 
                 configuration.setProperty("hibernate.connection.driver_class", DB_DRIVER);
@@ -37,18 +37,12 @@ public class Util {
                 StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(registryBuilder.build());
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         return sessionFactory;
-    }
-
-    public static void shutdown(){
-        if (sessionFactory != null){
-            sessionFactory.close();
-        }
     }
 
     public static Connection getConnection() {
